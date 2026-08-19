@@ -1,6 +1,7 @@
 import './style.css';
 import './portal.css';
 import './admin.css';
+import './admin-stats.css';
 
 const categories = [
   ['all', '전체'], ['year', '신년운세'], ['month', '월간운세'], ['today', '오늘의 운세'],
@@ -61,3 +62,12 @@ async function hydrateFromDatabase() {
   }
 }
 hydrateFromDatabase();
+const adminStatsObserver = new MutationObserver(() => {
+  if (state.page !== 'admin' || document.querySelector('.admin-stats')) return;
+  const counts = posts.reduce((map, post) => { map[post.category] = (map[post.category] || 0) + 1; return map; }, {});
+  const stats = document.createElement('div');
+  stats.className = 'admin-stats';
+  stats.innerHTML = `<div><b>${posts.length}</b><small>전체 게시글</small></div>${categories.slice(1, 5).map(([key, label]) => `<div><b>${counts[key] || 0}</b><small>${label}</small></div>`).join('')}`;
+  document.querySelector('.admin .page-title')?.after(stats);
+});
+adminStatsObserver.observe(app, { childList: true });
