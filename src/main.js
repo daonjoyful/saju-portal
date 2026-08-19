@@ -37,3 +37,25 @@ window.toggleSearch = () => { const q=prompt('검색어를 입력하세요'); if
 window.addPost = e => { e.preventDefault(); const f=new FormData(e.target); posts.unshift({id:Date.now(),category:f.get('category'),title:f.get('title'),excerpt:f.get('excerpt'),date:f.get('date').replaceAll('-','.'),read:0,tone:'violet',body:f.get('body')}); save(); e.target.reset(); render(); alert('게시글이 등록되었습니다.'); };
 window.removePost = id => { if(confirm('이 게시글을 삭제할까요?')) { posts=posts.filter(p=>p.id!==id); save(); render(); } };
 render();
+async function hydrateFromDatabase() {
+  try {
+    const response = await fetch('/api/posts');
+    if (!response.ok) return;
+    const remote = await response.json();
+    if (!Array.isArray(remote) || remote.length === 0) return;
+    posts = remote.map((p, index) => ({
+      id: p.id,
+      category: p.category_id,
+      title: p.title,
+      excerpt: p.excerpt || '',
+      date: (p.published_at || p.created_at || '').slice(0, 10).replaceAll('-', '.'),
+      read: p.views || 0,
+      tone: ['violet', 'peach', 'blue', 'gold', 'rose', 'green'][index % 6],
+      body: p.body || ''
+    }));
+    render();
+  } catch (error) {
+    console.info('D1 is unavailable; showing local sample content.', error);
+  }
+}
+hydrateFromDatabase();
