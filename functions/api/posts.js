@@ -21,7 +21,8 @@ export async function onRequestGet({ env, request }) {
 export async function onRequestPost({ env, request }) {
   if (!env.DB) return json({ error: 'D1 database is not configured yet.' }, { status: 503 });
   if (!env.ADMIN_TOKEN) return json({ error: 'Admin token is not configured yet.' }, { status: 503 });
-  if (request.headers.get('authorization') !== `Bearer ${env.ADMIN_TOKEN}`) return json({ error: 'Unauthorized.' }, { status: 401 });
+  const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '').trim();
+  if (token !== env.ADMIN_TOKEN.trim()) return json({ error: 'Unauthorized.' }, { status: 401 });
   const body = await request.json();
   if (!body.title || !body.category_id || !body.body) return json({ error: 'title, category_id and body are required.' }, { status: 400 });
   const result = await env.DB.prepare('INSERT INTO posts(category_id,title,excerpt,body,image_url,status,published_at) VALUES(?,?,?,?,?,?,?)').bind(body.category_id, body.title, body.excerpt || '', body.body, body.image_url || null, body.status || 'draft', body.status === 'published' ? new Date().toISOString() : null).run();
@@ -30,7 +31,8 @@ export async function onRequestPost({ env, request }) {
 
 export async function onRequestDelete({ env, request }) {
   if (!env.DB) return json({ error: 'D1 database is not configured yet.' }, { status: 503 });
-  if (!env.ADMIN_TOKEN || request.headers.get('authorization') !== `Bearer ${env.ADMIN_TOKEN}`) return json({ error: 'Unauthorized.' }, { status: 401 });
+  const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '').trim();
+  if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN.trim()) return json({ error: 'Unauthorized.' }, { status: 401 });
   const id = new URL(request.url).searchParams.get('id');
   if (!id) return json({ error: 'id is required.' }, { status: 400 });
   await env.DB.prepare('DELETE FROM posts WHERE id = ?').bind(id).run();
@@ -39,7 +41,8 @@ export async function onRequestDelete({ env, request }) {
 
 export async function onRequestPut({ env, request }) {
   if (!env.DB) return json({ error: 'D1 database is not configured yet.' }, { status: 503 });
-  if (!env.ADMIN_TOKEN || request.headers.get('authorization') !== `Bearer ${env.ADMIN_TOKEN}`) return json({ error: 'Unauthorized.' }, { status: 401 });
+  const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '').trim();
+  if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN.trim()) return json({ error: 'Unauthorized.' }, { status: 401 });
   const id = new URL(request.url).searchParams.get('id');
   const body = await request.json();
   if (!id || !body.title || !body.body) return json({ error: 'id, title and body are required.' }, { status: 400 });

@@ -4,7 +4,8 @@ function json(data, init = {}) {
 
 export async function onRequestPost({ env, request }) {
   if (!env.MEDIA) return json({ error: 'R2 media binding is not configured yet.' }, { status: 503 });
-  if (!env.ADMIN_TOKEN || request.headers.get('authorization') !== `Bearer ${env.ADMIN_TOKEN}`) return json({ error: 'Unauthorized.' }, { status: 401 });
+  const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '').trim();
+  if (!env.ADMIN_TOKEN || token !== env.ADMIN_TOKEN.trim()) return json({ error: 'Unauthorized.' }, { status: 401 });
   const form = await request.formData();
   const file = form.get('file');
   if (!(file instanceof File)) return json({ error: 'file is required.' }, { status: 400 });
