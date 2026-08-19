@@ -1,0 +1,11 @@
+name = "saju-portal"
+compatibility_date = "2026-08-19"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "saju-portal-db"
+database_id = "e307ac1d-5822-46de-beac-9eede7d95c37"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "saju-portal-media"

@@ -30,3 +30,4 @@ npm run dev
 Cloudflare Pages runtime binding: `DB` → `saju-portal-db`
 Admin write protection: `ADMIN_TOKEN` secret configured in production.
 R2 media binding: `MEDIA` → `saju-portal-media`.
+Local Cloudflare resource configuration: `wrangler.toml`.
