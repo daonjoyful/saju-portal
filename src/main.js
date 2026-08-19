@@ -1,5 +1,6 @@
 import './style.css';
 import './portal.css';
+import './admin.css';
 
 const categories = [
   ['all', '전체'], ['year', '신년운세'], ['month', '월간운세'], ['today', '오늘의 운세'],
