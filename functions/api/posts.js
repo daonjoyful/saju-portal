@@ -27,3 +27,12 @@ export async function onRequestPost({ env, request }) {
   const result = await env.DB.prepare('INSERT INTO posts(category_id,title,excerpt,body,image_url,status,published_at) VALUES(?,?,?,?,?,?,?)').bind(body.category_id, body.title, body.excerpt || '', body.body, body.image_url || null, body.status || 'draft', body.status === 'published' ? new Date().toISOString() : null).run();
   return json({ id: result.meta.last_row_id }, { status: 201 });
 }
+
+export async function onRequestDelete({ env, request }) {
+  if (!env.DB) return json({ error: 'D1 database is not configured yet.' }, { status: 503 });
+  if (!env.ADMIN_TOKEN || request.headers.get('authorization') !== `Bearer ${env.ADMIN_TOKEN}`) return json({ error: 'Unauthorized.' }, { status: 401 });
+  const id = new URL(request.url).searchParams.get('id');
+  if (!id) return json({ error: 'id is required.' }, { status: 400 });
+  await env.DB.prepare('DELETE FROM posts WHERE id = ?').bind(id).run();
+  return json({ ok: true });
+}
