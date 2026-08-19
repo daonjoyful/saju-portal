@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saju-portal.pages.dev/sitemap.xml
