@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://saju-portal.pages.dev/</loc><priority>1.0</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/year</loc><priority>0.8</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/month</loc><priority>0.8</priority></url>
   <url><loc>https://saju-portal.pages.dev/#category/today</loc><priority>0.8</priority></url>
-  <url><loc>https://saju-portal.pages.dev/#category/year</loc><priority>0.7</priority></url>
-  <url><loc>https://saju-portal.pages.dev/#category/month</loc><priority>0.7</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/meeting</loc><priority>0.7</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/crush</loc><priority>0.7</priority></url>
   <url><loc>https://saju-portal.pages.dev/#category/compatibility</loc><priority>0.7</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/worry</loc><priority>0.7</priority></url>
+  <url><loc>https://saju-portal.pages.dev/#category/saju</loc><priority>0.7</priority></url>
   <url><loc>https://saju-portal.pages.dev/#consult</loc><priority>0.6</priority></url>
 </urlset>
