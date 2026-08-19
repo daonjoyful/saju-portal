@@ -1,0 +1,10 @@
+.hero {
+  background-image: linear-gradient(90deg, rgba(21, 18, 39, .96) 0%, rgba(31, 25, 58, .86) 42%, rgba(31, 25, 58, .18) 100%), url('/hero-moonlight.png');
+  background-position: center, right center;
+  background-size: cover, auto 100%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 700px) {
+  .hero { background-position: center, 72% center; background-size: cover, auto 100%; }
+}
