@@ -30,4 +30,8 @@
 .product-price { color:var(--accent); font-size:22px; font-weight:700; }
 .product-detail-card ul { text-align:left; line-height:2; color:var(--muted); margin:28px auto; max-width:320px; }
 .product-detail-card small { display:block; color:#aaa5b4; margin-top:18px; }
+.product-banner { max-width:1070px; margin:0 auto 70px; padding:38px 48px; border-radius:18px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.product-banner h2 { margin:0 0 10px; font-size:26px; }
+.product-banner p:not(.eyebrow) { color:#c4bfd0; line-height:1.7; margin:0; }
 @media (max-width:800px) { .product-grid { grid-template-columns:1fr; } .product-detail-card h1 { font-size:32px; } }
+@media (max-width:700px) { .product-banner { margin:0 22px 50px; padding:28px 24px; display:block; } .product-banner .light-btn { margin-top:20px; } }
