@@ -40,6 +40,11 @@
 .product-banner h2 { margin:0 0 10px; font-size:26px; }
 .product-banner p:not(.eyebrow) { color:#c4bfd0; line-height:1.7; margin:0; }
 .faq { max-width:760px; margin:58px auto 0; }
+.product-compare { max-width:760px; margin:58px auto 0; }
+.product-compare h2 { font-size:25px; margin-bottom:18px; }
+.compare-row { display:grid; grid-template-columns:1fr 130px 100px; gap:12px; align-items:center; padding:15px 0; border-top:1px solid var(--line); font-size:13px; }
+.compare-head { color:var(--muted); font-size:11px; }
+.compare-row small { color:var(--accent); }
 .faq h2 { font-size:25px; margin-bottom:18px; }
 .faq details { border-top:1px solid var(--line); padding:18px 0; }
 .faq details:last-child { border-bottom:1px solid var(--line); }
@@ -47,4 +52,5 @@
 .faq p { color:var(--muted); line-height:1.7; margin:12px 0 0; }
 @media (max-width:800px) { .product-grid { grid-template-columns:1fr; } .product-detail-card h1 { font-size:32px; } }
 @media (max-width:700px) { .sample-report>div { grid-template-columns:1fr; } }
+@media (max-width:700px) { .compare-row { grid-template-columns:1fr 90px 65px; } }
 @media (max-width:700px) { .product-banner { margin:0 22px 50px; padding:28px 24px; display:block; } .product-banner .light-btn { margin-top:20px; } }
