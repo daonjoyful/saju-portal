@@ -26,3 +26,5 @@ npm run dev
 
 - Build command: `npm run build`
 - Build output directory: `dist`
+
+Cloudflare Pages runtime binding: `DB` → `saju-portal-db`
