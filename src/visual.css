@@ -33,5 +33,11 @@
 .product-banner { max-width:1070px; margin:0 auto 70px; padding:38px 48px; border-radius:18px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .product-banner h2 { margin:0 0 10px; font-size:26px; }
 .product-banner p:not(.eyebrow) { color:#c4bfd0; line-height:1.7; margin:0; }
+.faq { max-width:760px; margin:58px auto 0; }
+.faq h2 { font-size:25px; margin-bottom:18px; }
+.faq details { border-top:1px solid var(--line); padding:18px 0; }
+.faq details:last-child { border-bottom:1px solid var(--line); }
+.faq summary { cursor:pointer; font-weight:700; }
+.faq p { color:var(--muted); line-height:1.7; margin:12px 0 0; }
 @media (max-width:800px) { .product-grid { grid-template-columns:1fr; } .product-detail-card h1 { font-size:32px; } }
 @media (max-width:700px) { .product-banner { margin:0 22px 50px; padding:28px 24px; display:block; } .product-banner .light-btn { margin-top:20px; } }
