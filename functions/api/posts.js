@@ -46,6 +46,6 @@ export async function onRequestPut({ env, request }) {
   const id = new URL(request.url).searchParams.get('id');
   const body = await request.json();
   if (!id || !body.title || !body.body) return json({ error: 'id, title and body are required.' }, { status: 400 });
-  await env.DB.prepare('UPDATE posts SET title = ?, excerpt = ?, body = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').bind(body.title, body.excerpt || '', body.body, id).run();
+  await env.DB.prepare('UPDATE posts SET category_id = COALESCE(?, category_id), title = ?, excerpt = ?, body = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').bind(body.category_id || null, body.title, body.excerpt || '', body.body, id).run();
   return json({ ok: true });
 }
