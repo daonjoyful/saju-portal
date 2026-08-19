@@ -1,0 +1,10 @@
+{
+  "name": "윤슬 | 오늘의 흐름을 읽다",
+  "short_name": "윤슬",
+  "description": "오늘의 흐름과 관계의 방향을 읽는 운세 콘텐츠 포털",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#211a3a",
+  "lang": "ko"
+}
